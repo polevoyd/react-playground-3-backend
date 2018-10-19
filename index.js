@@ -6,6 +6,10 @@ const app = express();
 const port = 3000;
 
 app.get('/', (req, res) => res.send('Hello, Alex!'));
+
+/*-------------------------------------------------------------*/
+//        GET
+/*-------------------------------------------------------------*/
 app.get('/tweets', (req, res) => {
 
   res.send('something');
