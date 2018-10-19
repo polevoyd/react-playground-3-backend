@@ -1,13 +1,10 @@
 'use strict';
 
 require('dotenv').config();
-
 const express = require('express');
 const request = require('request');
 const app = express();
 const port = 4000;
-
-app.get('/', (req, res) => res.send('Hello, Alex!'));
 
 /*-------------------------------------------------------------*/
 //        GET
@@ -19,9 +16,8 @@ app.get('/tweets', (req, res) => {
   // Latitude, Longitude, Radius (in miles)
 
   const latitude = req.query.latitude;      // 37.781157
-  const longitude = req.query.longitude;    // -122.398720
-  const radius = 10;
-  const twitter_api = `https://api.twitter.com/1.1/search/tweets.json?geocode=37.781157,-122.398720,${radius}mi`;
+  const longitude = req.query.longitude;    // -122.398720 [47.6151, -122.3447]
+  const twitter_api = `https://api.twitter.com/1.1/search/tweets.json?geocode=47.6151,-122.3447,50mi`;
   const bearer_token = process.env.TWITTER_BEARER_TOKEN;
 
   const options = {
@@ -49,13 +45,12 @@ app.get('/tweets', (req, res) => {
         geo: tweet.geo,
         coordinates: tweet.coordinates
       };
-    }).filter( tweet => tweet.entities.media );
-
+    });
+ 
+    // Sending back array of tweet objects
     res.send(arrayOfTweets);
   });
 });
-
-
 
 
 /*-------------------------------------------------------------*/
