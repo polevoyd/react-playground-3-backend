@@ -36,12 +36,7 @@ app.get('/tweets', (req, res) => {
 
     // Here we need to construct a 'tweet' object and push it to an array
 
-    arrayOfTweets = body.statuses.map( tweet => {
-
-    //   console.log(tweet);
-    //   console.log('##########################################################');
-    //   console.log('##########################################################');
-    //   console.log('##########################################################');
+    const arrayOfTweets = body.statuses.map( tweet => {
 
       return {
         created_at : tweet.created_at,
@@ -50,9 +45,15 @@ app.get('/tweets', (req, res) => {
         geo: tweet.geo,
         coordinates: tweet.coordinates
       };
+    }).filter( tweet => {
+
+      return tweet.entities.media;
     });
-  })
-    .then(res.send(arrayOfTweets));
+
+    res.send(arrayOfTweets);
+  });
+
+
 
 
 
