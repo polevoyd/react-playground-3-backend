@@ -15,7 +15,9 @@ app.get('/', (req, res) => res.send('Hello, Alex!'));
 
 app.get('/tweets', (req, res) => {
 
-  let arrayOfTweets = [];
+  // Variables to accept:
+  // Latitude, Longitude, Radius (in miles)
+
   const twitter_api = 'https://api.twitter.com/1.1/search/tweets.json?geocode=37.781157,-122.398720,1mi';
   const bearer_token = process.env.TWITTER_BEARER_TOKEN;
 
@@ -31,10 +33,9 @@ app.get('/tweets', (req, res) => {
     }
   };
 
-
+  // Request and filter a data then
+  
   request(options, function(error, response, body) {
-
-    // Here we need to construct a 'tweet' object and push it to an array
 
     const arrayOfTweets = body.statuses.map( tweet => {
 
@@ -47,13 +48,8 @@ app.get('/tweets', (req, res) => {
       };
     }).filter( tweet => tweet.entities.media );
 
-    console.log(arrayOfTweets);
     res.send(arrayOfTweets);
   });
-
-
-
-
 });
 
 
