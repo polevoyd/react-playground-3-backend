@@ -13,7 +13,7 @@ app.get('/', (req, res) => res.send('Hello, Alex!'));
 //        GET
 /*-------------------------------------------------------------*/
 
-app.get('/tweets', (request, response) => {
+app.get('/tweets', (req, res) => {
 
   let arrayOfTweets = [];
   const twitter_api = 'https://api.twitter.com/1.1/search/tweets.json?geocode=37.781157,-122.398720,1mi';
@@ -35,11 +35,14 @@ app.get('/tweets', (request, response) => {
   request(options, function(error, response, body) {
 
     // Here we need to construct a 'tweet' object and push it to an array
-    console.dir(body);
+
+    const tempArray = body.statuses.map( tweet => {
+
+    });
   });
 
 
-
+  res.send(arrayOfTweets);
 });
 
 
