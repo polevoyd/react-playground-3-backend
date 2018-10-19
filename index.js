@@ -18,7 +18,10 @@ app.get('/tweets', (req, res) => {
   // Variables to accept:
   // Latitude, Longitude, Radius (in miles)
 
-  const twitter_api = 'https://api.twitter.com/1.1/search/tweets.json?geocode=37.781157,-122.398720,1mi';
+  const latitude = req.query.latitude;      // 37.781157
+  const longitude = req.query.longitude;    // -122.398720
+  const radius = 10;
+  const twitter_api = `https://api.twitter.com/1.1/search/tweets.json?geocode=37.781157,-122.398720,${radius}mi`;
   const bearer_token = process.env.TWITTER_BEARER_TOKEN;
 
   const options = {
@@ -34,7 +37,7 @@ app.get('/tweets', (req, res) => {
   };
 
   // Request and filter a data then
-  
+
   request(options, function(error, response, body) {
 
     const arrayOfTweets = body.statuses.map( tweet => {
