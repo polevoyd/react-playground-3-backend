@@ -15,9 +15,11 @@ app.get('/tweets', (req, res) => {
   // Variables to accept:
   // Latitude, Longitude, Radius (in miles)
 
-  const latitude = req.query.latitude;      // 37.781157
-  const longitude = req.query.longitude;    // -122.398720 [47.6151, -122.3447]
-  const twitter_api = `https://api.twitter.com/1.1/search/tweets.json?geocode=47.6151,-122.3447,50mi`;
+  console.log(req.query);
+
+  const latitude = req.query.lat;      // 37.781157
+  const longitude = req.query.lng;    // -122.398720 [47.6151, -122.3447]
+  const twitter_api = `https://api.twitter.com/1.1/search/tweets.json?geocode=${latitude},${longitude},50mi`;
   const bearer_token = process.env.TWITTER_BEARER_TOKEN;
 
   const options = {
