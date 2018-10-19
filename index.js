@@ -45,14 +45,11 @@ app.get('/tweets', (req, res) => {
         geo: tweet.geo,
         coordinates: tweet.coordinates
       };
-    }).filter( tweet => {
+    }).filter( tweet => tweet.entities.media );
 
-      return tweet.entities.media;
-    });
-
+    console.log(arrayOfTweets);
     res.send(arrayOfTweets);
   });
-
 
 
 
