@@ -18,23 +18,23 @@ app.get('/tweets', (req, res) => {
   var request = require('request');
   var bearer_token = process.env.TWITTER_BEARER_TOKEN;
 
-  console.log(bearer_token);
+ 
 
-//   var options = {
-//     method: 'GET',
-//     url: twitter_api,
-//     qs: {
-//       'screen_name': 'twitterapi'
-//     },
-//     json: true,
-//     headers: {
-//       'Authorization': 'Bearer ' + bearer_token
-//     }
-//   };
+  var options = {
+    method: 'GET',
+    url: twitter_api,
+    qs: {
+      'screen_name': 'twitterapi'
+    },
+    json: true,
+    headers: {
+      'Authorization': 'Bearer ' + bearer_token
+    }
+  };
 
-//   request(options, function(error, response, body) {
-//     console.dir(body);
-//   });
+  request(options, function(error, response, body) {
+    console.dir(body);
+  });
 
 
 
