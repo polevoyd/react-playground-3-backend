@@ -36,13 +36,26 @@ app.get('/tweets', (req, res) => {
 
     // Here we need to construct a 'tweet' object and push it to an array
 
-    const tempArray = body.statuses.map( tweet => {
+    arrayOfTweets = body.statuses.map( tweet => {
 
+    //   console.log(tweet);
+    //   console.log('##########################################################');
+    //   console.log('##########################################################');
+    //   console.log('##########################################################');
+
+      return {
+        created_at : tweet.created_at,
+        text: tweet.text,
+        entities: tweet.entities,
+        geo: tweet.geo,
+        coordinates: tweet.coordinates
+      };
     });
-  });
+  })
+    .then(res.send(arrayOfTweets));
 
 
-  res.send(arrayOfTweets);
+
 });
 
 
