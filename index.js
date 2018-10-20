@@ -19,7 +19,7 @@ app.get('/tweets', (req, res) => {
 
   const latitude = req.query.lat;      // 37.781157
   const longitude = req.query.lng;    // -122.398720
-  const twitter_api = `https://api.twitter.com/1.1/search/tweets.json?geocode=${latitude},${longitude},30mi`;
+  const twitter_api = `https://api.twitter.com/1.1/search/tweets.json?geocode=${latitude},${longitude},100mi&count=100`;
   const bearer_token = process.env.TWITTER_BEARER_TOKEN;
 
   const options = {
