@@ -15,7 +15,7 @@ app.get('/tweets', (req, res) => {
   // Variables to accept:
   // Latitude, Longitude, Radius (in miles)
 
-  console.log(req.query);
+  // console.log(req.query);
 
   const latitude = req.query.lat;      // 37.781157
   const longitude = req.query.lng;    // -122.398720
@@ -40,12 +40,14 @@ app.get('/tweets', (req, res) => {
 
     const arrayOfTweets = body.statuses.map( tweet => {
 
+      // console.log(tweet.entities.media);
+
       return {
         created_at : tweet.created_at,
         text: tweet.text,
-        entities: tweet.entities,
-        geo: tweet.geo,
-        coordinates: tweet.coordinates
+        picture: tweet.entities.media || undefined,
+        user: tweet.user.screen_name,
+        url: tweet.url
       };
     });
  
