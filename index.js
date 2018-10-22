@@ -45,9 +45,9 @@ app.get('/tweets', (req, res) => {
       return {
         created_at : tweet.created_at,
         text: tweet.text,
-        picture: tweet.entities.media || undefined,
+        picture: tweet.entities.media ? tweet.entities.media : undefined,
         user: tweet.user.screen_name,
-        url: tweet.url
+        url: tweet.url ? tweet.url : undefined
       };
     });
  
