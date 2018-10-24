@@ -4,7 +4,7 @@ require('dotenv').config();
 const express = require('express');
 const request = require('request');
 const app = express();
-const port = 4000;
+const port = process.env.PORT || 4000;
 
 /*-------------------------------------------------------------*/
 //        GET
