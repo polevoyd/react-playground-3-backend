@@ -15,8 +15,6 @@ app.get('/tweets', (req, res) => {
   // Variables to accept:
   // Latitude, Longitude, Radius (in miles)
 
-  // console.log(req.query);
-
   const latitude = req.query.lat;      // 37.781157
   const longitude = req.query.lng;    // -122.398720
   const twitter_api = `https://api.twitter.com/1.1/search/tweets.json?geocode=${latitude},${longitude},100mi&count=100`;
@@ -40,8 +38,6 @@ app.get('/tweets', (req, res) => {
 
     const arrayOfTweets = body.statuses.map( tweet => {
 
-      // console.log(tweet.entities.media);
-
       return {
         created_at : tweet.created_at,
         text: tweet.text,
@@ -56,11 +52,9 @@ app.get('/tweets', (req, res) => {
   });
 });
 
-
 /*-------------------------------------------------------------*/
 //        ENTRY POINT
 /*-------------------------------------------------------------*/
-
 
 app.listen(port, () => console.log(`Listening on port ${port}!`));
 
